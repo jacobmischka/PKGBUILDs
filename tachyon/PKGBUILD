@@ -7,7 +7,7 @@ source=('git+https://github.com/WatchBeam/tachyon.git'
 arch=('any')
 md5sums=('SKIP'
          '0e058a60ec27291709e1e140d9d8db7e'
-         '141f9c62e34f9e36bd769b5173e70de7')
+         '674f56c40e5658da9f2c857f5292974a')
 
 build(){
 	cd $pkgname
@@ -25,6 +25,6 @@ EOF
 package(){
 	cd $pkgname
 	make DESTDIR="$pkgdir/" install
-	install -Dm644 "$srcdir"/ftl-express "$pkgdir"/opt/"$pkgname"/bin
+	install -Dm755 "$srcdir"/ftl-express "$pkgdir"/opt/"$pkgname"/bin
 	install -Dm644 "$srcdir/$pkgname.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
 }
