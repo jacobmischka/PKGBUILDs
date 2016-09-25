@@ -1,0 +1,30 @@
+pkgname=tachyon
+pkgver=20160924
+pkgrel=1
+license=('GPL2')
+source=('git+https://github.com/WatchBeam/tachyon.git'
+		'https://github.com/WatchBeam/tachyon/releases/download/v1.2.14/ftl-express' 'tachyon.desktop')
+arch=('any')
+md5sums=('SKIP'
+         '0e058a60ec27291709e1e140d9d8db7e'
+         '141f9c62e34f9e36bd769b5173e70de7')
+
+build(){
+	cd $pkgname
+	cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX:PATH=/opt/tachyon -DFTLSDK_LIB=/usr/lib/libftl.so -DFTLSDK_INCLUDE_DIR=/usr/include/ftl/ .
+	{ cat - plugins/obs-ffmpeg/obs-ffmpeg-output.c > x && mv x plugins/obs-ffmpeg/obs-ffmpeg-output.c; } <<EOF
+#include <resolv.h>
+#include <netdb.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+EOF
+	make
+}
+
+package(){
+	cd $pkgname
+	make DESTDIR="$pkgdir/" install
+	install -Dm644 "$srcdir"/ftl-express "$pkgdir"/opt/"$pkgname"/bin
+	install -Dm644 "$srcdir/$pkgname.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
+}

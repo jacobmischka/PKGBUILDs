@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Tachyon
+Comment=Fork of obs-studio for Beam's FTL protocol
+Icon=/opt/tachyon/share/icons/hicolor/256x256/apps/tachyon.png
+Terminal=false
+Exec=env LD_LIBRARY_PATH=/opt/tachyon/lib /opt/tachyon/bin/tachyon

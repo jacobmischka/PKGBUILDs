@@ -1,0 +1,20 @@
+pkgname=ftl-sdk
+pkgver=20160924
+pkgrel=1
+license=('MIT')
+source=('git+https://github.com/WatchBeam/ftl-sdk.git')
+arch=('any')
+md5sums=('SKIP')
+
+build(){
+	cd $pkgname
+	mkdir build
+	cd build
+	cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
+	make
+}
+
+package(){
+	cd $pkgname/build
+	make DESTDIR="$pkgdir/" install
+}
