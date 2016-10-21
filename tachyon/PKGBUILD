@@ -12,6 +12,7 @@ md5sums=('SKIP'
 build(){
 	cd $pkgname
 	cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX:PATH=/opt/tachyon -DFTLSDK_LIB=/usr/lib/libftl.so -DFTLSDK_INCLUDE_DIR=/usr/include/ftl/ .
+	# https://github.com/WatchBeam/tachyon/issues/52#issuecomment-247720696
 	{ cat - plugins/obs-ffmpeg/obs-ffmpeg-output.c > x && mv x plugins/obs-ffmpeg/obs-ffmpeg-output.c; } <<EOF
 #include <resolv.h>
 #include <netdb.h>
