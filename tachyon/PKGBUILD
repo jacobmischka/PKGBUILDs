@@ -1,4 +1,4 @@
-pkgname=tachyon
+pkgname=tachyon-git
 pkgver=20160924
 pkgrel=1
 license=('GPL2')

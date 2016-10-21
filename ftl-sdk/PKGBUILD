@@ -1,4 +1,4 @@
-pkgname=ftl-sdk
+pkgname=ftl-sdk-git
 pkgver=20160924
 pkgrel=1
 license=('MIT')
